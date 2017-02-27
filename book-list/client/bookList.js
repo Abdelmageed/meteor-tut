@@ -12,9 +12,11 @@ Template.bookList.helpers({
   }
 });
 
-//Template.bookList.events({
-//  'click button'(event, instance) {
-//    // increment the counter when button is clicked
-//    instance.counter.set(instance.counter.get() + 1);
-//  },
-//});
+Template.bookList.events({
+  'submit .add-book'(event, instance) {
+    event.preventDefault();
+    Meteor.call('addBook', {
+      title: event.target.title.value,
+      author: event.target.author.value});
+  },
+});
